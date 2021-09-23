@@ -1,0 +1,12 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>List of Files</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let file of fileUploads;let index = index;">
+          <app-upload-details [fileUpload]='file' [index]='index'></app-upload-details>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

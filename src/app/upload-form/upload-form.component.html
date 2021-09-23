@@ -1,0 +1,18 @@
+<div>
+  <mat-form-field>
+    <div>
+      <mat-toolbar>
+        <input matInput accept=".csv" [value]="fileName" (change)="selectFile($event) "/>
+      </mat-toolbar>
+      <input accept=".csv" type="file" id="fileInput" (change)="selectFile($event)" name="fileInput"/>
+    </div>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" [disabled]="!selectedFiles" (click)="upload()">
+    Upload
+  </button>
+  <mat-toolbar *ngIf="currentFileUpload" class="progress-bar">
+    <mat-progress-bar color="accent" [value]="percentage"></mat-progress-bar>
+    <span class="progress">{{ percentage }}%</span>
+  </mat-toolbar>
+</div>

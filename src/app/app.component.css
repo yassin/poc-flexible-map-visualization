@@ -1,0 +1,26 @@
+.outer-wrapper {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.map-wrapper {
+  height: 400px;
+}
+agm-map {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.mat-toolbar-row {
+  justify-content: center;
+}
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+.sidenav-spacer {
+  flex: 2 2 auto;
+}
+
+

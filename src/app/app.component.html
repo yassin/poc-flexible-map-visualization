@@ -1,0 +1,59 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button mat-raised-button (click)="drawer.toggle()" class="example-icon"
+            aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="toolbar-spacer"></span>
+    <span>Flexible Data Map Visualization</span>
+    <span class="toolbar-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>
+      <app-upload-form></app-upload-form>
+      <app-upload-list></app-upload-list>
+    </p>
+  </mat-drawer>
+
+
+  <!-- this creates a google map on the page with the given lat/lng from -->
+  <!-- the component as the initial center of the map: -->
+  <div class="outer-wrapper">
+    <div class="map-wrapper" id="wrapper" #wrapper>
+      <agm-map
+        [latitude]="latitude"
+        [longitude]="longitude"
+        [scrollwheel]="true"
+        [zoom]="zoom"
+        (idle)="idle()"
+        (centerChange)="centerChange($event)"
+        id="AgmMap"
+        #AgmMap>
+        <agm-marker
+          *ngFor="let marker of markers"
+          [latitude]="marker.lat"
+          [longitude]="marker.lng"
+          [openInfoWindow]="marker.info"
+          [title]="marker.title"
+          [iconUrl]="marker.icon"
+          (markerClick)="clickedMarker(infowindow)">
+          <agm-info-window #infowindow>
+            <strong>{{marker.info}}</strong>
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </div>
+
+
+</mat-drawer-container>
+
+

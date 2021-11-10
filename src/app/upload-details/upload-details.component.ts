@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, NgZone, OnInit} from '@angular/core';
 import {FileUploadService} from 'src/app/shared/services/file-upload.service';
 import {MatCheckboxChange} from "@angular/material/checkbox";
 
@@ -11,7 +11,7 @@ export class UploadDetailsComponent implements OnInit {
   @Input() fileUpload!: string;
   @Input() index!: number;
 
-  constructor(private uploadService: FileUploadService) {
+  constructor(private uploadService: FileUploadService, private zone: NgZone) {
   }
 
   ngOnInit(): void {
@@ -22,11 +22,14 @@ export class UploadDetailsComponent implements OnInit {
   }
 
   selectFileToShow(event: MatCheckboxChange, index: number) {
-    // @ts-ignore
-    if (event.checked) {
-      this.uploadService.selectDataMap(index);
-    } else {
-      this.uploadService.removeDataMap(index);
-    }
+    this.zone.runOutsideAngular(() => {
+      // @ts-ignore
+      if (event.checked) {
+        this.uploadService.selectDataMap(index);
+      } else {
+        this.uploadService.removeDataMap(index);
+      }
+    });
+
   }
 }

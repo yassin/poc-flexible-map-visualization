@@ -51,14 +51,15 @@ export class FileUploadService {
 
   removeDataMap(index: number) {
     // @ts-ignore
-    this.dataMap[index].forEach(element => {
+    /*this.dataMap[index].forEach(element => {
       this._selectedDataMap.forEach((item, placement, object) => {
         // @ts-ignore
         if (deepEqual(element, item)) {
           object.splice(placement, 1);
         }
       })
-    })
+    })*/
+    this._selectedDataMap = []
     this.selectedDataMapSubject.next(this._selectedDataMap);
   }
 

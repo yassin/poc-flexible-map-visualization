@@ -35,20 +35,27 @@
         [zoom]="zoom"
         (idle)="idle()"
         (centerChange)="centerChange($event)"
+        (boundsChange)="updateMarkers($event)"
         id="AgmMap"
         #AgmMap>
-        <agm-marker
-          *ngFor="let marker of markers"
-          [latitude]="marker.lat"
-          [longitude]="marker.lng"
-          [openInfoWindow]="marker.info"
-          [title]="marker.title"
-          [iconUrl]="marker.icon"
-          (markerClick)="clickedMarker(infowindow)">
-          <agm-info-window #infowindow>
-            <strong>{{marker.info}}</strong>
-          </agm-info-window>
-        </agm-marker>
+
+          <agm-marker-cluster *ngIf="showMarkers" [maxZoom]="16" [gridSize]="80" [ignoreHidden]="true"
+            imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
+            <agm-marker
+              *ngFor="let marker of markers"
+              [latitude]="marker.lat"
+              [longitude]="marker.lng"
+              [openInfoWindow]="marker.info"
+              [title]="marker.title"
+              [iconUrl]="marker.icon"
+              (markerClick)="clickedMarker(infowindow)">
+              <agm-info-window #infowindow>
+                <strong>{{marker.info}}</strong>
+              </agm-info-window>
+            </agm-marker>
+          </agm-marker-cluster>
+
+
       </agm-map>
     </div>
   </div>

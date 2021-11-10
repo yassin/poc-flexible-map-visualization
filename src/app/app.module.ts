@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {AgmCoreModule} from '@agm/core';
+import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -20,6 +20,7 @@ import {MatListModule} from "@angular/material/list";
 import {UploadDetailsComponent} from "./upload-details/upload-details.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CommonModule} from '@angular/common';
+import { AgmMarkerClustererModule } from '@agm/markerclusterer';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {CommonModule} from '@angular/common';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA-eSfV-x345rNPTkJlGWlvuumEdG01bnY'
     }),
+    AgmMarkerClustererModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     MatButtonModule,
@@ -49,7 +51,7 @@ import {CommonModule} from '@angular/common';
     CommonModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule {
